@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://federleicht-abriss.de/sitemap.xml
