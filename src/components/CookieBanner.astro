@@ -1,0 +1,119 @@
+---
+---
+
+<div 
+  id="cookie-banner" 
+  class="fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-metallic-platin shadow-2xl transform translate-y-full transition-transform duration-300"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="cookie-title"
+  aria-describedby="cookie-description"
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+    <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
+      
+      <!-- Content -->
+      <div class="flex-1">
+        <h2 id="cookie-title" class="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
+          <svg class="w-5 h-5 text-shiny-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+          </svg>
+          Datenschutzeinstellungen
+        </h2>
+        <p id="cookie-description" class="text-sm text-concrete leading-relaxed max-w-3xl">
+          Wir verwenden Cookies, um Ihnen die bestmögliche Erfahrung auf unserer Website zu bieten. 
+          Sie können selbst entscheiden, welche Cookies Sie zulassen möchten. 
+          <a href="/datenschutz/" class="text-shiny-gold hover:underline font-medium">Mehr erfahren</a>
+        </p>
+      </div>
+      
+      <!-- Buttons -->
+      <div class="flex flex-col sm:flex-row gap-3 w-full lg:w-auto flex-shrink-0">
+        <button
+          type="button"
+          id="cookie-essential"
+          class="px-5 py-2.5 bg-metallic-platin text-gray-700 font-medium rounded-lg hover:bg-concrete-light transition-colors text-sm order-2 sm:order-1"
+        >
+          Nur Essenzielle
+        </button>
+        <button
+          type="button"
+          id="cookie-reject"
+          class="px-5 py-2.5 border-2 border-gray-300 text-gray-700 font-medium rounded-lg hover:border-gray-400 transition-colors text-sm order-3 sm:order-2"
+        >
+          Ablehnen
+        </button>
+        <button
+          type="button"
+          id="cookie-accept"
+          class="px-5 py-2.5 bg-shiny-gold text-white font-semibold rounded-lg hover:bg-yellow-600 hover:shadow-md transition-all text-sm order-1 sm:order-3"
+        >
+          Zustimmen
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function() {
+    const COOKIE_KEY = 'federleicht_cookie_consent';
+    const banner = document.getElementById('cookie-banner');
+    const btnAccept = document.getElementById('cookie-accept');
+    const btnReject = document.getElementById('cookie-reject');
+    const btnEssential = document.getElementById('cookie-essential');
+    
+    function getConsent() {
+      try {
+        return JSON.parse(localStorage.getItem(COOKIE_KEY));
+      } catch {
+        return null;
+      }
+    }
+    
+    function setConsent(choice: 'all' | 'essential' | 'none') {
+      localStorage.setItem(COOKIE_KEY, JSON.stringify({
+        choice: choice,
+        timestamp: new Date().toISOString()
+      }));
+      
+      hideBanner();
+      
+      // Dispatch event for other scripts
+      window.dispatchEvent(new CustomEvent('cookieConsent', { detail: choice }));
+      
+      // Reload page if analytics should be loaded/unloaded
+      // window.location.reload();
+    }
+    
+    function showBanner() {
+      banner?.classList.remove('translate-y-full');
+      // Prevent body scroll when banner is open
+      document.body.style.overflow = 'hidden';
+    }
+    
+    function hideBanner() {
+      banner?.classList.add('translate-y-full');
+      document.body.style.overflow = '';
+    }
+    
+    // Check on load
+    const consent = getConsent();
+    if (!consent) {
+      // Small delay for better UX
+      setTimeout(showBanner, 1000);
+    }
+    
+    // Event listeners
+    btnAccept?.addEventListener('click', () => setConsent('all'));
+    btnReject?.addEventListener('click', () => setConsent('none'));
+    btnEssential?.addEventListener('click', () => setConsent('essential'));
+    
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !banner?.classList.contains('translate-y-full')) {
+        setConsent('essential');
+      }
+    });
+  })();
+</script>

@@ -1,0 +1,145 @@
+---
+const navItems = [
+  { href: '/', label: 'Startseite' },
+  { href: '/leistungen/', label: 'Leistungen' },
+  { href: '/ueber-uns/', label: 'Über Uns' },
+  { href: '/kontakt/', label: 'Kontakt' },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-metallic-platin shadow-sm">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-20">
+      <!-- Logo - DEIN NEUES LOGO -->
+      <a href="/" aria-label="Federleicht Abriss - Zur Startseite" class="flex items-center">
+        <div class="relative">
+          <img 
+            src="/images/logo_test.png" 
+            alt="DEIN LOGO HIER" 
+            class="h-14 w-auto rounded-xl object-contain"
+            style="border: 3px solid #D4AF37; padding: 2px; background: white;"
+          />
+        </div>
+      </a>
+      
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:flex items-center gap-8" aria-label="Hauptnavigation">
+        {navItems.map((item) => {
+          const isActive = currentPath === item.href || currentPath.startsWith(item.href) && item.href !== '/';
+          return (
+            <a
+              href={item.href}
+              class={`text-sm font-medium transition-colors duration-200 ${
+                isActive 
+                  ? 'text-shiny-gold' 
+                  : 'text-gray-700 hover:text-shiny-gold'
+              }`}
+              aria-current={isActive ? 'page' : undefined}
+            >
+              {item.label}
+            </a>
+          );
+        })}
+      </nav>
+      
+      <!-- CTA Button (Desktop) -->
+      <div class="hidden md:block">
+        <a
+          href="/kontakt/"
+          class="inline-flex items-center gap-2 px-5 py-2.5 bg-shiny-gold text-white text-sm font-semibold rounded-lg shadow-sm hover:bg-yellow-600 hover:shadow-md transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-shiny-gold focus:ring-offset-2"
+        >
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+          </svg>
+          Angebot anfordern
+        </a>
+      </div>
+      
+      <!-- Mobile Menu Button -->
+      <button
+        type="button"
+        id="mobile-menu-btn"
+        class="md:hidden p-2 rounded-lg text-gray-700 hover:bg-metallic-platin transition-colors"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        aria-label="Menü öffnen"
+      >
+        <svg class="w-6 h-6 menu-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+        <svg class="w-6 h-6 close-icon hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+  
+  <!-- Mobile Menu -->
+  <div
+    id="mobile-menu"
+    class="hidden md:hidden border-t border-metallic-platin bg-white"
+    role="navigation"
+    aria-label="Mobile Navigation"
+  >
+    <div class="px-4 py-4 space-y-3">
+      {navItems.map((item) => {
+        const isActive = currentPath === item.href || currentPath.startsWith(item.href) && item.href !== '/';
+        return (
+          <a
+            href={item.href}
+            class={`block px-4 py-3 rounded-lg text-base font-medium transition-colors ${
+              isActive 
+                ? 'bg-shiny-gold/10 text-shiny-gold' 
+                : 'text-gray-700 hover:bg-metallic-platin'
+            }`}
+            aria-current={isActive ? 'page' : undefined}
+          >
+            {item.label}
+          </a>
+        );
+      })}
+      <a
+        href="/kontakt/"
+        class="block w-full px-4 py-3 bg-shiny-gold text-white text-center font-semibold rounded-lg hover:bg-yellow-600 transition-colors"
+      >
+        Angebot anfordern
+      </a>
+    </div>
+  </div>
+</header>
+
+<script>
+  // Mobile menu toggle
+  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const menuIcon = mobileMenuBtn?.querySelector('.menu-icon');
+  const closeIcon = mobileMenuBtn?.querySelector('.close-icon');
+  
+  function toggleMenu() {
+    const isExpanded = mobileMenuBtn?.getAttribute('aria-expanded') === 'true';
+    mobileMenuBtn?.setAttribute('aria-expanded', (!isExpanded).toString());
+    mobileMenu?.classList.toggle('hidden');
+    menuIcon?.classList.toggle('hidden');
+    closeIcon?.classList.toggle('hidden');
+  }
+  
+  mobileMenuBtn?.addEventListener('click', toggleMenu);
+  
+  // Close menu on resize if open
+  window.addEventListener('resize', () => {
+    if (window.innerWidth >= 768 && !mobileMenu?.classList.contains('hidden')) {
+      toggleMenu();
+    }
+  });
+  
+  // Close menu when clicking on a link
+  mobileMenu?.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      if (!mobileMenu?.classList.contains('hidden')) {
+        toggleMenu();
+      }
+    });
+  });
+</script>

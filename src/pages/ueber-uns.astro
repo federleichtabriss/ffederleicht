@@ -1,0 +1,416 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const pageTitle = "Über Uns | Federleicht Abriss - Ihr Partner in Sehnde";
+const pageDescription = "Lernen Sie Federleicht Abriss kennen. 10+ Jahre Erfahrung, zertifiziert nach TRGS 519 & 521. Ihr verlässlicher Partner für Abriss & Entrümpelung in Sehnde und Umgebung.";
+---
+
+<Layout title={pageTitle} description={pageDescription}>
+  <!-- Page Header -->
+  <section class="relative py-20 bg-gray-900" aria-labelledby="page-title">
+    <div class="absolute inset-0 opacity-10">
+      <div class="absolute inset-0" style="background-image: radial-gradient(circle at 2px 2px, white 1px, transparent 0); background-size: 40px 40px;"></div>
+    </div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="text-center">
+        <span class="text-shiny-gold font-semibold tracking-wide uppercase text-sm">Das Unternehmen</span>
+        <h1 id="page-title" class="text-4xl sm:text-5xl font-bold text-white mt-2 mb-4">
+          Über Uns
+        </h1>
+        <p class="text-gray-400 text-lg max-w-2xl mx-auto">
+          Wir machen schwere Arbeit federleicht – mit Erfahrung, Präzision und dem 
+          nötigen Feingefühl für jedes Projekt.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Company History Section -->
+  <section class="py-24 bg-white" aria-labelledby="history-heading">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <!-- Image -->
+        <div class="relative">
+          <div class="absolute -inset-4 bg-shiny-gold/10 rounded-3xl blur-2xl"></div>
+          <div class="relative bg-metallic-platin/50 rounded-2xl p-4">
+            <img 
+              src="/images/uberuns.png" 
+              alt="Das Federleicht Team bei der Arbeit" 
+              class="w-full h-auto rounded-xl"
+              loading="lazy"
+              decoding="async"
+            />
+            <!-- Badge -->
+            <div class="absolute bottom-8 left-8 right-8 bg-white rounded-xl p-4 shadow-xl">
+              <p class="font-bold text-gray-900 text-lg">Seit 2014 für Sie da</p>
+              <p class="text-shiny-gold font-medium">10+ Jahre Erfahrung</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Content -->
+        <div>
+          <span class="text-shiny-gold font-semibold tracking-wide uppercase text-sm">Firmengeschichte</span>
+          <h2 id="history-heading" class="text-3xl sm:text-4xl font-bold text-gray-900 mt-2 mb-6">
+            Von einem Ein-Mann-Betrieb zum erfahrenen Team
+          </h2>
+          
+          <div class="prose prose-lg text-gray-600">
+            <p class="mb-4">
+              Federleicht Abriss Entkernung und Entrümpelung wurde 2014 gegründet und hat sich 
+              seitdem kontinuierlich weiterentwickelt. Was als kleiner Betrieb begann, ist heute 
+              ein fest etabliertes Unternehmen in der Baubranche der Region Hannover.
+            </p>
+            <p class="mb-4">
+              Der Name „Federleicht" steht für unsere Philosophie: Schwerste Arbeit wird für unsere 
+              Kunden zur leichten Angelegenheit. Wir übernehmen die komplette Koordination, 
+              die fachgerechte Durchführung und die ordnungsgemäße Entsorgung – Sie müssen sich 
+              um nichts kümmern.
+            </p>
+            <p>
+              Über die Jahre haben wir mehr als 500 Projekte erfolgreich abgeschlossen und 
+              dabei ein starkes Netzwerk aus Partnern und zufriedenen Kunden aufgebaut. 
+              Unsere Wurzeln in Sehnde und der Region Hannover sind uns wichtig – hier sind 
+              wir zu Hause.
+            </p>
+          </div>
+          
+          <!-- Stats -->
+          <div class="mt-8 pt-8 border-t border-gray-200 grid grid-cols-3 gap-4">
+            <div class="text-center">
+              <p class="text-2xl font-bold text-shiny-gold">500+</p>
+              <p class="text-sm text-gray-500">Projekte</p>
+            </div>
+            <div class="text-center">
+              <p class="text-2xl font-bold text-shiny-gold">10+</p>
+              <p class="text-sm text-gray-500">Jahre Erfahrung</p>
+            </div>
+            <div class="text-center">
+              <p class="text-2xl font-bold text-shiny-gold">100%</p>
+              <p class="text-sm text-gray-500">Kundenzufriedenheit</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Company Values Section -->
+  <section class="py-24 bg-metallic-platin/20" aria-labelledby="values-heading">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-shiny-gold font-semibold tracking-wide uppercase text-sm">Unternehmenswerte</span>
+        <h2 id="values-heading" class="text-3xl sm:text-4xl font-bold text-gray-900 mt-2 mb-4">
+          Was uns auszeichnet
+        </h2>
+        <p class="text-gray-600 text-lg">
+          Diese drei Säulen bilden das Fundament unseres Handelns. 
+          Sie garantieren Qualität, die Sie spüren können.
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Value 1: Zuverlässigkeit -->
+        <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow text-center">
+          <div class="w-16 h-16 bg-shiny-gold/10 rounded-full flex items-center justify-center mx-auto mb-6">
+            <svg class="w-8 h-8 text-shiny-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-3">Zuverlässigkeit</h3>
+          <p class="text-gray-600">
+            Wir halten unsere Termine ein – punktlich und verbindlich. Wenn wir etwas versprechen, 
+            können Sie sich darauf verlassen. Keine Ausreden, keine Verschiebungen. 
+            Ihr Projekt läuft nach Plan.
+          </p>
+        </div>
+        
+        <!-- Value 2: Professionalität -->
+        <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow text-center">
+          <div class="w-16 h-16 bg-shiny-gold/10 rounded-full flex items-center justify-center mx-auto mb-6">
+            <svg class="w-8 h-8 text-shiny-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-3">Professionalität</h3>
+          <p class="text-gray-600">
+            Fachgerechte Arbeit nach aktuellen Vorschriften und Standards. Zertifiziert nach 
+            TRGS 519 & 521, voll versichert und stetig weitergebildet. 
+            Wir arbeiten mit modernster Technik und bewährten Methoden.
+          </p>
+        </div>
+        
+        <!-- Value 3: Kundenzufriedenheit -->
+        <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow text-center">
+          <div class="w-16 h-16 bg-shiny-gold/10 rounded-full flex items-center justify-center mx-auto mb-6">
+            <svg class="w-8 h-8 text-shiny-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-3">Kundenzufriedenheit</h3>
+          <p class="text-gray-600">
+            Ihre Zufriedenheit ist unser höchstes Ziel. Festpreisgarantie ohne versteckte Kosten, 
+            transparente Kommunikation und persönliche Betreuung von der ersten Anfrage bis zur 
+            finalen Abnahme.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team Expertise Section -->
+  <section class="py-24 bg-white" aria-labelledby="team-heading">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-shiny-gold font-semibold tracking-wide uppercase text-sm">Team-Expertise</span>
+        <h2 id="team-heading" class="text-3xl sm:text-4xl font-bold text-gray-900 mt-2 mb-4">
+          Erfahren. Qualifiziert. Engagiert.
+        </h2>
+        <p class="text-gray-600 text-lg">
+          Hinter Federleicht Abriss steht ein engagiertes Team von Fachkräften, 
+          das jedes Projekt mit Know-how und Leidenschaft angeht.
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <!-- Expertise 1 -->
+        <div class="bg-gray-50 rounded-2xl p-6 text-center hover:bg-gray-100 transition-colors">
+          <div class="w-14 h-14 bg-shiny-gold rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold text-gray-900 mb-2">Erfahrenes Team</h3>
+          <p class="text-gray-600 text-sm">
+            Unser Team vereint jahrelange Erfahrung in Abriss, Entkernung und Entrümpelung.
+          </p>
+        </div>
+        
+        <!-- Expertise 2 -->
+        <div class="bg-gray-50 rounded-2xl p-6 text-center hover:bg-gray-100 transition-colors">
+          <div class="w-14 h-14 bg-shiny-gold rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold text-gray-900 mb-2">Zertifizierte Fachkräfte</h3>
+          <p class="text-gray-600 text-sm">
+            Alle Mitarbeiter sind entsprechend geschult und verfügen über erforderliche Zertifizierungen.
+          </p>
+        </div>
+        
+        <!-- Expertise 3 -->
+        <div class="bg-gray-50 rounded-2xl p-6 text-center hover:bg-gray-100 transition-colors">
+          <div class="w-14 h-14 bg-shiny-gold rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold text-gray-900 mb-2">Modernes Equipment</h3>
+          <p class="text-gray-600 text-sm">
+            Wir setzen auf professionelle Technik und modernes Werkzeug für effiziente Arbeit.
+          </p>
+        </div>
+        
+        <!-- Expertise 4 -->
+        <div class="bg-gray-50 rounded-2xl p-6 text-center hover:bg-gray-100 transition-colors">
+          <div class="w-14 h-14 bg-shiny-gold rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold text-gray-900 mb-2">Flexibel & Schnell</h3>
+          <p class="text-gray-600 text-sm">
+            Kurze Reaktionszeiten und flexible Terminierung – wir passen uns Ihren Anforderungen an.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Certificates Section -->
+  <section class="py-24 bg-metallic-platin/20" aria-labelledby="certificates-heading">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <!-- Content -->
+        <div>
+          <span class="text-shiny-gold font-semibold tracking-wide uppercase text-sm">Qualifikationen</span>
+          <h2 id="certificates-heading" class="text-3xl sm:text-4xl font-bold text-gray-900 mt-2 mb-6">
+            Zertifiziert & Geprüft
+          </h2>
+          <p class="text-gray-600 text-lg mb-8">
+            In der Baubranche gibt es keinen Spielraum für Halbwissen. Deshalb legen wir 
+            größten Wert auf kontinuierliche Fortbildung und aktuelle Zertifizierungen.
+          </p>
+          
+          <div class="space-y-6">
+            <!-- Certificate 1 -->
+            <div class="flex items-start space-x-4">
+              <div class="w-14 h-14 bg-green-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                <svg class="w-7 h-7 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold text-gray-900">TRGS 519 – Asbestsanierung</h3>
+                <p class="text-gray-600 text-sm">
+                  Großer Asbestschein (Stufe D) zur Sanierung von asbesthaltigen Materialien 
+                  in Gebäuden aller Art.
+                </p>
+              </div>
+            </div>
+            
+            <!-- Certificate 2 -->
+            <div class="flex items-start space-x-4">
+              <div class="w-14 h-14 bg-green-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                <svg class="w-7 h-7 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold text-gray-900">TRGS 521 – Mineralwolle</h3>
+                <p class="text-gray-600 text-sm">
+                  Sachkunde für die sichere Entsorgung von alter Mineralwolle und künstlichen 
+                  mineralischen Fasern.
+                </p>
+              </div>
+            </div>
+            
+            <!-- Certificate 3 -->
+            <div class="flex items-start space-x-4">
+              <div class="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                <svg class="w-7 h-7 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                </svg>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold text-gray-900">Betriebshaftpflichtversicherung</h3>
+                <p class="text-gray-600 text-sm">
+                  Umfassender Versicherungsschutz für alle Arbeiten – Ihr Schutz ist uns wichtig.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Image / Visual -->
+        <div class="relative">
+          <div class="absolute -inset-4 bg-shiny-gold/10 rounded-3xl blur-2xl"></div>
+          <div class="relative bg-gray-900 rounded-2xl p-8 text-white">
+            <div class="text-center mb-8">
+              <div class="w-20 h-20 bg-shiny-gold rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+                </svg>
+              </div>
+              <h3 class="text-2xl font-bold mb-2">Ihr Projekt in sicheren Händen</h3>
+              <p class="text-gray-400">
+                Vertrauen Sie auf zertifizierte Fachkenntnis und jahrelange Erfahrung.
+              </p>
+            </div>
+            
+            <div class="space-y-4">
+              <div class="flex justify-between items-center py-3 border-b border-gray-700">
+                <span class="text-gray-400">Gegründet</span>
+                <span class="font-semibold">2014</span>
+              </div>
+              <div class="flex justify-between items-center py-3 border-b border-gray-700">
+                <span class="text-gray-400">Abgeschlossene Projekte</span>
+                <span class="font-semibold">500+</span>
+              </div>
+              <div class="flex justify-between items-center py-3 border-b border-gray-700">
+                <span class="text-gray-400">Zufriedene Kunden</span>
+                <span class="font-semibold">100%</span>
+              </div>
+              <div class="flex justify-between items-center py-3">
+                <span class="text-gray-400">Standort</span>
+                <span class="font-semibold">Sehnde / Hannover</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Service Area Section -->
+  <section class="py-24 bg-gray-900 relative overflow-hidden" aria-labelledby="service-area-heading">
+    <!-- Background Pattern -->
+    <div class="absolute inset-0 opacity-5">
+      <div class="absolute inset-0" style="background-image: radial-gradient(circle at 2px 2px, white 1px, transparent 0); background-size: 40px 40px;"></div>
+    </div>
+    
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-shiny-gold font-semibold tracking-wide uppercase text-sm">Einsatzgebiet</span>
+        <h2 id="service-area-heading" class="text-3xl sm:text-4xl font-bold text-white mt-2 mb-4">
+          Wo wir tätig sind
+        </h2>
+        <p class="text-gray-400 text-lg">
+          Wir sind in der Region Hannover zu Hause und übernehmen Projekte in Sehnde 
+          und allen umliegenden Gemeinden.
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-4 text-center hover:border-shiny-gold/50 transition-colors">
+          <p class="text-white font-medium">Sehnde</p>
+        </div>
+        <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-4 text-center hover:border-shiny-gold/50 transition-colors">
+          <p class="text-white font-medium">Hannover</p>
+        </div>
+        <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-4 text-center hover:border-shiny-gold/50 transition-colors">
+          <p class="text-white font-medium">Lehrte</p>
+        </div>
+        <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-4 text-center hover:border-shiny-gold/50 transition-colors">
+          <p class="text-white font-medium">Burgdorf</p>
+        </div>
+        <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-4 text-center hover:border-shiny-gold/50 transition-colors">
+          <p class="text-white font-medium">Sarstedt</p>
+        </div>
+        <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-4 text-center hover:border-shiny-gold/50 transition-colors">
+          <p class="text-white font-medium">Algermissen</p>
+        </div>
+        <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-4 text-center hover:border-shiny-gold/50 transition-colors">
+          <p class="text-white font-medium">Nordstemmen</p>
+        </div>
+        <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-4 text-center hover:border-shiny-gold/50 transition-colors">
+          <p class="text-white font-medium">& Umgebung</p>
+        </div>
+      </div>
+      
+      <div class="mt-12 text-center">
+        <p class="text-gray-400 mb-6">
+          Sie wohnen außerhalb dieser Gebiete? Kontaktieren Sie uns – wir finden eine Lösung.
+        </p>
+        <a href="/kontakt/" class="inline-flex items-center px-6 py-3 bg-shiny-gold text-white font-semibold rounded-lg shadow-lg hover:shadow-xl hover:bg-yellow-600 transition-all">
+          Anfrage senden
+          <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-20 bg-shiny-gold" aria-label="Call to Action">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">
+        Lassen Sie uns zusammenarbeiten
+      </h2>
+      <p class="text-white/90 text-lg mb-8">
+        Wir freuen uns darauf, auch Ihr Projekt federleicht zu machen. 
+        Vereinbaren Sie jetzt eine kostenlose Besichtigung.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/kontakt/#angebot" class="inline-flex items-center justify-center px-8 py-4 bg-white text-gray-900 font-semibold rounded-lg shadow-lg hover:shadow-xl hover:bg-gray-100 transition-all">
+          Termin vereinbaren
+        </a>
+        <a href="tel:+491621689715" class="inline-flex items-center justify-center px-8 py-4 bg-transparent border-2 border-white text-white font-semibold rounded-lg hover:bg-white/10 transition-all">
+          0155 67235344
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>
