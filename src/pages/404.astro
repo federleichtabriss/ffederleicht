@@ -1,0 +1,36 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const pageTitle = "404 - Seite nicht gefunden | Federleicht Abriss";
+const pageDescription = "Die angeforderte Seite konnte nicht gefunden werden. Zurück zur Startseite von Federleicht Abriss.";
+---
+
+<Layout title={pageTitle} description={pageDescription}>
+  <section class="min-h-[70vh] flex items-center justify-center py-20 bg-metallic-platin/20" aria-labelledby="error-heading">
+    <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div class="w-24 h-24 bg-shiny-gold/10 rounded-full flex items-center justify-center mx-auto mb-8">
+        <span class="text-5xl font-bold text-shiny-gold">404</span>
+      </div>
+      <h1 id="error-heading" class="text-4xl font-bold text-gray-900 mb-4">
+        Seite nicht gefunden
+      </h1>
+      <p class="text-xl text-gray-600 mb-8">
+        Die von Ihnen gesuchte Seite existiert leider nicht oder wurde verschoben.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/" class="inline-flex items-center justify-center px-8 py-4 bg-shiny-gold text-white font-semibold rounded-lg hover:bg-yellow-600 transition-all">
+          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+          </svg>
+          Zur Startseite
+        </a>
+        <a href="/kontakt/" class="inline-flex items-center justify-center px-8 py-4 bg-white text-gray-700 border border-gray-300 font-semibold rounded-lg hover:bg-gray-50 transition-all">
+          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+          </svg>
+          Kontakt aufnehmen
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

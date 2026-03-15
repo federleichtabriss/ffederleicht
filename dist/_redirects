@@ -1,0 +1,8 @@
+/leistungen.html    /leistungen/    301
+/ueber-uns.html     /ueber-uns/     301
+/kontakt.html       /kontakt/       301
+/impressum.html     /impressum/     301
+/datenschutz.html   /datenschutz/   301
+
+# SPA fallback for 404
+/*                  /404/           404
