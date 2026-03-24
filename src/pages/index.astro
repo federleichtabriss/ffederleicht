@@ -10,13 +10,18 @@ const pageDescription = "Wir machen schwere Arbeit federleicht. Professioneller 
   <section class="relative min-h-[90vh] flex items-center overflow-hidden" aria-label="Hero Bereich">
     <!-- Background Image with Overlay -->
     <div class="absolute inset-0 z-0">
-      <img 
-        src="/images/hero.png" 
-        alt="" 
-        class="w-full h-full object-cover"
-        decoding="async"
-        fetchpriority="high"
-      />
+      <picture>
+        <source srcset="/images/hero.webp" type="image/webp">
+        <img 
+          src="/images/hero.png" 
+          alt="" 
+          class="w-full h-full object-cover"
+          decoding="async"
+          fetchpriority="high"
+          width="1920"
+          height="1080"
+        />
+      </picture>
       <div class="absolute inset-0 bg-gradient-to-r from-gray-900/90 via-gray-900/70 to-gray-900/40"></div>
     </div>
     
@@ -133,15 +138,18 @@ const pageDescription = "Wir machen schwere Arbeit federleicht. Professioneller 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         <!-- Abriss -->
         <article class="group bg-metallic-platin/30 rounded-2xl p-8 hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
-          <img 
-            src="/images/leistung1.png" 
-            alt="Professioneller Abriss von Gebäuden aller Art"
-            class="w-full h-48 object-cover rounded-xl mb-6"
-            loading="lazy"
-            decoding="async"
-            width="800"
-            height="600"
-          />
+          <picture>
+            <source srcset="/images/leistung1.webp" type="image/webp">
+            <img 
+              src="/images/leistung1.png" 
+              alt="Professioneller Abriss von Gebäuden aller Art"
+              class="w-full h-48 object-cover rounded-xl mb-6"
+              loading="lazy"
+              decoding="async"
+              width="800"
+              height="600"
+            />
+          </picture>
           <div class="w-16 h-16 bg-shiny-gold rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
             <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
@@ -162,15 +170,18 @@ const pageDescription = "Wir machen schwere Arbeit federleicht. Professioneller 
         
         <!-- Entkernung -->
         <article class="group bg-metallic-platin/30 rounded-2xl p-8 hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
-          <img 
-            src="/images/leistung2.png" 
-            alt="Fachgerechte Entkernung von Wohn- und Geschäftsräumen"
-            class="w-full h-48 object-cover rounded-xl mb-6"
-            loading="lazy"
-            decoding="async"
-            width="800"
-            height="600"
-          />
+          <picture>
+            <source srcset="/images/leistung2.webp" type="image/webp">
+            <img 
+              src="/images/leistung2.png" 
+              alt="Fachgerechte Entkernung von Wohn- und Geschäftsräumen"
+              class="w-full h-48 object-cover rounded-xl mb-6"
+              loading="lazy"
+              decoding="async"
+              width="800"
+              height="600"
+            />
+          </picture>
           <div class="w-16 h-16 bg-shiny-gold rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
             <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
@@ -191,15 +202,18 @@ const pageDescription = "Wir machen schwere Arbeit federleicht. Professioneller 
         
         <!-- Entrümpelung -->
         <article class="group bg-metallic-platin/30 rounded-2xl p-8 hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
-          <img 
-            src="/images/leistung3.png" 
-            alt="Schnelle und diskrete Entrümpelung von Wohnungen und Kellern"
-            class="w-full h-48 object-cover rounded-xl mb-6"
-            loading="lazy"
-            decoding="async"
-            width="800"
-            height="600"
-          />
+          <picture>
+            <source srcset="/images/leistung3.webp" type="image/webp">
+            <img 
+              src="/images/leistung3.png" 
+              alt="Schnelle und diskrete Entrümpelung von Wohnungen und Kellern"
+              class="w-full h-48 object-cover rounded-xl mb-6"
+              loading="lazy"
+              decoding="async"
+              width="800"
+              height="600"
+            />
+          </picture>
           <div class="w-16 h-16 bg-shiny-gold rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
             <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
@@ -296,15 +310,18 @@ const pageDescription = "Wir machen schwere Arbeit federleicht. Professioneller 
         <div class="relative">
           <div class="absolute -inset-4 bg-shiny-gold/20 rounded-3xl blur-2xl"></div>
           <div class="relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-4">
-            <img 
-              src="/images/uberuns.png" 
-              alt="Das Federleicht Abriss Team bei der Arbeit" 
-              class="w-full h-auto rounded-xl"
-              loading="lazy"
-              decoding="async"
-              width="800"
-              height="600"
-            />
+            <picture>
+              <source srcset="/images/uberuns.webp" type="image/webp">
+              <img 
+                src="/images/uberuns.png" 
+                alt="Das Federleicht Abriss Team bei der Arbeit" 
+                class="w-full h-auto rounded-xl"
+                loading="lazy"
+                decoding="async"
+                width="800"
+                height="600"
+              />
+            </picture>
             <!-- Badge Overlay -->
             <div class="absolute bottom-8 left-8 right-8 bg-white rounded-xl p-4 shadow-xl">
               <div class="flex items-center space-x-3">
@@ -448,7 +465,7 @@ const pageDescription = "Wir machen schwere Arbeit federleicht. Professioneller 
               </div>
               <div>
                 <p class="text-sm text-gray-500">E-Mail</p>
-                <a href="mailto:Ismaildag@ymail.com" class="text-lg font-semibold text-gray-900 hover:text-shiny-gold transition-colors">Ismaildag@ymail.com</a>
+                <a href="mailto:info@federleicht-abriss.de" class="text-lg font-semibold text-gray-900 hover:text-shiny-gold transition-colors">info@federleicht-abriss.de</a>
               </div>
             </div>
           </div>

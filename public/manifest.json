@@ -1,0 +1,20 @@
+{
+  "name": "Federleicht Abriss Entkernung und Entrümpelung",
+  "short_name": "Federleicht Abriss",
+  "description": "Professioneller Abriss, Entkernung und Entrümpelung in Sehnde und Umgebung. Zertifiziert nach TRGS 519 & 521.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#D4AF37",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "de-DE",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

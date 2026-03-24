@@ -33,15 +33,18 @@ const pageDescription = "Lernen Sie Federleicht Abriss kennen. 10+ Jahre Erfahru
         <div class="relative">
           <div class="absolute -inset-4 bg-shiny-gold/10 rounded-3xl blur-2xl"></div>
           <div class="relative bg-metallic-platin/50 rounded-2xl p-4">
-            <img 
-              src="/images/uberuns.png" 
-              alt="Das Federleicht Team bei der Arbeit" 
-              class="w-full h-auto rounded-xl"
-              loading="lazy"
-              decoding="async"
-              width="800"
-              height="600"
-            />
+            <picture>
+              <source srcset="/images/uberuns.webp" type="image/webp">
+              <img 
+                src="/images/uberuns.png" 
+                alt="Das Federleicht Team bei der Arbeit" 
+                class="w-full h-auto rounded-xl"
+                loading="lazy"
+                decoding="async"
+                width="800"
+                height="600"
+              />
+            </picture>
             <!-- Badge -->
             <div class="absolute bottom-8 left-8 right-8 bg-white rounded-xl p-4 shadow-xl">
               <p class="font-bold text-gray-900 text-lg">Seit 2014 für Sie da</p>

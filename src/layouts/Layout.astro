@@ -52,8 +52,11 @@ const fullOgImage = `${siteUrl}${ogImage}`;
     
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <!-- Apple Touch Icon - TODO: Create 180x180 PNG and uncomment -->
-    <!-- <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" /> -->
+    <!-- Apple Touch Icon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon.svg" />
+    
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="/manifest.json" />
     
     <!-- Preconnect to Web3Forms for form submission -->
     <link rel="preconnect" href="https://api.web3forms.com" />
@@ -70,7 +73,7 @@ const fullOgImage = `${siteUrl}${ogImage}`;
       "description": "Professioneller Abriss, Entkernung und Entrümpelung in Sehnde und Umgebung. Sachkunde nach TRGS 519 & 521.",
       "url": "https://federleicht-abriss.de",
       "telephone": "+4915567235344",
-      "email": "Ismaildag@ymail.com",
+      "email": "info@federleicht-abriss.de",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "Johann-Wichernstrasse 9a",
@@ -124,12 +127,17 @@ const fullOgImage = `${siteUrl}${ogImage}`;
         <div class="flex items-center justify-between h-28">
           <!-- Logo - DEIN LOGO -->
           <a href="/" class="flex items-center" aria-label="Federleicht Abriss - Zur Startseite">
-            <img 
-              src="/images/logo_test.png" 
-              alt="Federleicht Logo" 
-              class="h-24 w-auto rounded-xl"
-              style="border: 2px solid #D4AF37;"
-            />
+            <picture>
+              <source srcset="/images/logo_test.webp" type="image/webp">
+              <img 
+                src="/images/logo_test.png" 
+                alt="Federleicht Logo" 
+                class="h-24 w-auto rounded-xl"
+                style="border: 2px solid #D4AF37;"
+                width="200"
+                height="100"
+              />
+            </picture>
           </a>
           
           <!-- Desktop Navigation -->
@@ -193,12 +201,17 @@ const fullOgImage = `${siteUrl}${ogImage}`;
           <!-- Company Info -->
           <div class="space-y-4">
             <div>
-              <img 
-                src="/images/logo_test.png" 
-                alt="Federleicht Logo" 
-                class="h-16 w-auto rounded-lg"
-                style="border: 1px solid #D4AF37;"
-              />
+              <picture>
+                <source srcset="/images/logo_test.webp" type="image/webp">
+                <img 
+                  src="/images/logo_test.png" 
+                  alt="Federleicht Logo" 
+                  class="h-16 w-auto rounded-lg"
+                  style="border: 1px solid #D4AF37;"
+                  width="150"
+                  height="75"
+                />
+              </picture>
             </div>
             <p class="text-gray-400 text-sm leading-relaxed">
               Professioneller Abriss, Entkernung und Entrümpelung in Sehnde und Umgebung. Wir machen schwere Arbeit federleicht.
@@ -237,13 +250,13 @@ const fullOgImage = `${siteUrl}${ogImage}`;
                 <svg class="w-5 h-5 text-shiny-gold flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                 </svg>
-                <a href="tel:+491621689715" class="text-gray-400 hover:text-shiny-gold transition-colors text-sm">0155 67235344</a>
+                <a href="tel:+4915567235344" class="text-gray-400 hover:text-shiny-gold transition-colors text-sm">0155 67235344</a>
               </li>
               <li class="flex items-center space-x-3">
                 <svg class="w-5 h-5 text-shiny-gold flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
-                <a href="mailto:Ismaildag@ymail.com" class="text-gray-400 hover:text-shiny-gold transition-colors text-sm">Ismaildag@ymail.com</a>
+                <a href="mailto:info@federleicht-abriss.de" class="text-gray-400 hover:text-shiny-gold transition-colors text-sm">info@federleicht-abriss.de</a>
               </li>
             </ul>
           </div>

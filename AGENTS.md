@@ -43,26 +43,29 @@ This is a static business website for **Federleicht Abriss Entkernung und Entrü
 │   │   ├── kontakt.astro     # Contact page (form, hours, map)
 │   │   ├── impressum.astro   # Legal notice (required by German law)
 │   │   ├── datenschutz.astro # Privacy policy (GDPR/DSGVO compliant)
-│   │   └── danke.astro       # Thank you page (form success)
-│   ├── components/
+│   │   ├── danke.astro       # Thank you page (form success)
+│   │   └── 404.astro         # Custom 404 error page
+│   ├── components/           # Reusable Astro components
 │   │   ├── Header.astro      # Navigation component (sticky header)
 │   │   ├── Footer.astro      # Footer with contact info
 │   │   └── CookieBanner.astro # GDPR cookie consent banner
 │   ├── styles/
 │   │   └── global.css        # Custom styles, font imports, accessibility
 │   └── env.d.ts              # Astro type declarations
-├── public/
+├── public/                   # Static assets
 │   ├── js/
 │   │   ├── main.js           # Mobile menu, scroll effects, animations
-│   │   └── cookie-banner.js  # Cookie consent management
+│   │   └── cookie-banner.js  # Cookie consent management (IIFE)
 │   ├── images/               # Static images
 │   │   ├── hero.png          # Homepage hero background
 │   │   ├── leistung1.png     # Demolition service image
 │   │   ├── leistung2.png     # Gutting service image
 │   │   ├── leistung3.png     # Clearance service image
 │   │   ├── uberuns.png       # About us / team image
-│   │   ├── logo.png          # Company logo
+│   │   ├── logo.png          # Company logo (alternative)
 │   │   └── logo_test.png     # Active logo (used in header/footer)
+│   ├── robots.txt            # SEO robots file
+│   ├── sitemap.xml           # SEO sitemap
 │   └── favicon.svg           # Site favicon
 └── .astro/                   # Astro build cache
 ```
@@ -136,6 +139,7 @@ Font family: Inter (with system fallbacks)
 - Use semantic HTML5 elements (`<section>`, `<article>`, `<nav>`)
 - Include ARIA attributes for accessibility (`aria-label`, `aria-labelledby`, `aria-current`)
 - Pages import Layout: `import Layout from '../layouts/Layout.astro'`
+- Container pattern: `max-w-7xl mx-auto px-4 sm:px-6 lg:px-8`
 
 ### CSS/Tailwind Conventions
 - Use Tailwind utility classes as primary styling method
@@ -166,7 +170,7 @@ The website **must** include:
 1. **Impressum** (`/impressum/`) - Legal notice with:
    - Company name and owner (Ismail Dag)
    - Physical address (Johann-Wichernstrasse 9a, 31319 Sehnde)
-   - Contact details (phone: 0162 1689715, email: Ismaildag@ymail.com)
+   - Contact details (phone: 0155 67235344, email: Ismaildag@ymail.com)
    - VAT ID (currently marked "wird nachgereicht")
    - Gewerbeanmeldung (Gewerbeamt der Stadt Sehnde)
    - Professional liability insurance note
@@ -210,25 +214,30 @@ The contact form uses **Web3Forms** API:
 
 ```html
 <form action="https://api.web3forms.com/submit" method="POST">
-  <input type="hidden" name="access_key" value="IHR_WEB3FORMS_KEY_HIER" />
+  <input type="hidden" name="access_key" value="89095fef-e457-4ba7-935f-41f81e295ba5" />
   <input type="hidden" name="redirect" value="https://federleicht-abriss.de/danke/" />
   <!-- fields: name, phone, email, service, address, preferred_date, message, privacy -->
 </form>
 ```
 
-**Important:** The access key is currently a placeholder (`IHR_WEB3FORMS_KEY_HIER`). Before deployment, this must be replaced with an actual Web3Forms access key from https://web3forms.com/
+**Important:** The Web3Forms access key is configured. Forms submit to Web3Forms and redirect to `/danke/`.
 
 Forms exist on:
 - Homepage (`index.astro`) - basic version
 - Contact page (`kontakt.astro`) - extended version with address and date fields
-- Both submit to the same Web3Forms endpoint and redirect to `/danke/`
+
+Form features:
+- Honeypot field (`botcheck`) for spam protection
+- Privacy checkbox required (DSGVO compliance)
+- Client-side loading state on submit
+- Accessible form labels and error states
 
 ---
 
 ## Deployment
 
 ### Netlify Configuration (`netlify.toml`)
-- **Build command:** `npm run build`
+- **Build command:** `npm ci && npm run build`
 - **Publish directory:** `dist`
 - **Node version:** 20
 
@@ -247,6 +256,8 @@ HTML extension URLs redirect to clean URLs:
 - `/kontakt.html` → `/kontakt/`
 - etc.
 
+Custom 404 page configured for all unmatched routes.
+
 ### Caching
 - CSS/JS files: 1 year (`max-age=31536000`)
 - Fonts: 1 year (`max-age=31536000`)
@@ -264,6 +275,8 @@ Each page includes:
 - Schema.org structured data (LocalBusiness + Organization JSON-LD in Layout.astro)
 - Semantic heading hierarchy (single `<h1>` per page)
 - Preconnect to Web3Forms API
+- Sitemap.xml with priorities and change frequencies
+- Robots.txt allowing all access
 
 ---
 
@@ -283,6 +296,7 @@ All images should:
 - Include descriptive `alt` text in German
 - Use `loading="lazy"` except hero images (`fetchpriority="high"`)
 - Use `decoding="async"` for performance
+- Include explicit `width` and `height` attributes
 
 ---
 
@@ -311,6 +325,7 @@ Before deploying changes:
 - No inline scripts (all in external files)
 - HTTPS enforced by Netlify
 - Form honeypot field (`botcheck`) for spam protection
+- Subresource integrity not currently implemented (consider for future)
 
 ---
 
@@ -335,6 +350,10 @@ Before deploying changes:
    - `Header.astro` navItems array
    - `Footer.astro` footerLinks
    - `Layout.astro` if needed for structured data
+   - `sitemap.xml` for SEO
+   - `netlify.toml` redirects if needed
+
+8. **Component vs Layout:** The main Layout.astro includes the header, footer, and cookie banner directly. Individual Header.astro, Footer.astro, and CookieBanner.astro components exist but are primarily for reference/backup - Layout.astro is the source of truth.
 
 ---
 
