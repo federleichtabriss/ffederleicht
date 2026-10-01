@@ -1,360 +1,88 @@
-# Federleicht Abriss Website - Agent Documentation
+# Federleicht Abriss — Agent Notes
 
-> **Language Note:** This is a German-language website. All content, UI text, and documentation comments are in German (de-DE).
+Static Astro 4 marketing site (de-DE) for a demolition/gutting company in Sehnde, Germany. Deployed to Netlify. 8 pages, no client framework, no backend.
 
----
-
-## Project Overview
-
-This is a static business website for **Federleicht Abriss Entkernung und Entrümpelung**, a German demolition, gutting, and clearance company based in Sehnde, Lower Saxony. The company is owned by Ismail Dag and specializes in professional demolition services with certifications for hazardous material handling (TRGS 519 & 521 - asbestos and mineral wool).
-
-**Live Site:** https://federleicht-abriss.de
-
----
-
-## Technology Stack
-
-| Technology | Version | Purpose |
-|------------|---------|---------|
-| [Astro](https://astro.build/) | ^4.5.0 | Static site generator |
-| [Tailwind CSS](https://tailwindcss.com/) | ^3.4.1 | Utility-first CSS framework |
-| [@astrojs/tailwind](https://docs.astro.build/en/guides/integrations-guide/tailwind/) | ^5.1.0 | Astro-Tailwind integration |
-| [@fontsource/inter](https://fontsource.org/fonts/inter) | ^5.0.16 | Web font (Inter) |
-| [Web3Forms](https://web3forms.com/) | - | Contact form handling (API-based) |
-| [TypeScript](https://www.typescriptlang.org/) | strict | Type safety |
-
----
-
-## Project Structure
-
-```
-├── astro.config.mjs          # Astro configuration (static output, Tailwind)
-├── tailwind.config.mjs       # Tailwind with custom brand colors
-├── tsconfig.json             # TypeScript strict config with path aliases
-├── netlify.toml              # Netlify deployment config + security headers
-├── package.json              # NPM scripts and dependencies
-├── src/
-│   ├── layouts/
-│   │   └── Layout.astro      # Main layout (HTML shell, meta tags, header, footer)
-│   ├── pages/                # File-based routing
-│   │   ├── index.astro       # Homepage (Hero, Services, Process, Contact form)
-│   │   ├── leistungen.astro  # Services detail page (Abriss, Entkernung, Entrümpelung)
-│   │   ├── ueber-uns.astro   # About page (Founder story, certificates, service area)
-│   │   ├── kontakt.astro     # Contact page (form, hours, map)
-│   │   ├── impressum.astro   # Legal notice (required by German law)
-│   │   ├── datenschutz.astro # Privacy policy (GDPR/DSGVO compliant)
-│   │   ├── danke.astro       # Thank you page (form success)
-│   │   └── 404.astro         # Custom 404 error page
-│   ├── components/           # Reusable Astro components
-│   │   ├── Header.astro      # Navigation component (sticky header)
-│   │   ├── Footer.astro      # Footer with contact info
-│   │   └── CookieBanner.astro # GDPR cookie consent banner
-│   ├── styles/
-│   │   └── global.css        # Custom styles, font imports, accessibility
-│   └── env.d.ts              # Astro type declarations
-├── public/                   # Static assets
-│   ├── js/
-│   │   ├── main.js           # Mobile menu, scroll effects, animations
-│   │   └── cookie-banner.js  # Cookie consent management (IIFE)
-│   ├── images/               # Static images
-│   │   ├── hero.png          # Homepage hero background
-│   │   ├── leistung1.png     # Demolition service image
-│   │   ├── leistung2.png     # Gutting service image
-│   │   ├── leistung3.png     # Clearance service image
-│   │   ├── uberuns.png       # About us / team image
-│   │   ├── logo.png          # Company logo (alternative)
-│   │   └── logo_test.png     # Active logo (used in header/footer)
-│   ├── robots.txt            # SEO robots file
-│   ├── sitemap.xml           # SEO sitemap
-│   └── favicon.svg           # Site favicon
-└── .astro/                   # Astro build cache
-```
-
----
-
-## Build and Development Commands
+## Commands
 
 ```bash
-# Install dependencies
-npm install
-
-# Start development server (localhost:4321)
-npm run dev
-# or
-npm start
-
-# Build for production (outputs to /dist)
-npm run build
-
-# Preview production build locally
-npm run preview
-
-# Astro CLI
-npm run astro
+npm ci                 # lockfile is committed; Netlify runs exactly this
+npm run build          # the only real verification step (~450ms, 8 pages -> dist/)
+npm run dev            # localhost:4321
+npm run preview        # serves dist/
+npm run astro -- <cmd> # pass-through to the astro CLI
 ```
 
----
+**There is no lint, format, test, or typecheck.** Don't invent one and don't reach for `npx astro check` — `@astrojs/check` and `typescript` are *not* installed, so it drops into an interactive install prompt. `npm run build` is the whole gate.
 
-## Key Configuration Details
+## Highest-value gotcha: `src/styles/global.css` is orphaned
 
-### Astro Config (`astro.config.mjs`)
-- **Output:** Static (`output: 'static'`)
-- **Build format:** Directory (`/about/` → `/about/index.html`)
-- **Integrations:** Tailwind CSS
-- **Dev Toolbar:** Disabled (`devToolbar: { enabled: false }`)
-- **Optimizations:** 
-  - CSS/HTML minification (`compressHTML: true`)
-  - Inline stylesheets (`inlineStylesheets: 'auto'`)
-  - Vite build optimizations for CSS/JS minification
+Nothing imports it — not `Layout.astro`, not any page. Verified against a real build: the only CSS emitted is the Tailwind bundle `dist/_astro/danke.*.css`, containing zero `@fontsource` references, no `:focus-visible` rule, and no `/fonts/` directory in `dist`.
 
-### Tailwind Config (`tailwind.config.mjs`)
-Custom brand colors defined:
-- `metallic-platin`: #E5E4E2 (light gray background)
-- `shiny-gold`: #D4AF37 (brand accent, CTAs)
-- `concrete`: #7F8C8D (text gray)
-- `concrete-light`: #95A5A6
-- `concrete-dark`: #5D6D6E
-- `wood`: #8B5A2B (accent)
+So all of this is currently **dead CSS**: the Inter webfont import, the gold `:focus-visible` outline, `.skip-to-main` (the skip link renders as a visible gold link at the top of every page because it falls back to `position: static`), the custom scrollbar, the `prefers-reduced-motion` block, and print styles.
 
-Custom animations: `fade-in`, `slide-up`, `float`
+To fix, add `import '../styles/global.css';` to the `Layout.astro` frontmatter. Don't assume it's wired in just because it exists.
 
-Font family: Inter (with system fallbacks)
+## Architecture
 
-### TypeScript Paths (`tsconfig.json`)
-```json
-"@/*": ["src/*"]
-"@components/*": ["src/components/*"]
-"@layouts/*": ["src/layouts/*"]
-"@styles/*": ["src/styles/*"]
-```
+- **There is no `src/components/`.** Header, desktop+mobile nav, footer, and cookie banner markup are all inlined in `src/layouts/Layout.astro` (~340 lines). Edit there.
+- `Layout.astro` owns the whole HTML shell: meta/OG/Twitter tags, two JSON-LD blocks (LocalBusiness + Organization), header, footer, cookie banner, and the `<script defer>` tags. Pages supply only `<slot />` content.
+- All 8 pages import it relatively: `import Layout from '../layouts/Layout.astro';`. The `@layouts/*` etc. aliases in `tsconfig.json` are configured but unused — don't switch to them casually.
+- Client JS is plain vanilla files in `public/js/`, loaded via `<script defer>`. No islands, no `is:inline`, no hydration.
 
----
+## JS wiring quirks
 
-## Code Style Guidelines
+| File | Loaded by | Binds to |
+|---|---|---|
+| `main.js` | `Layout.astro` (all pages) | `#mobile-menu-btn`, `#mobile-menu`, `#header` |
+| `cookie-banner.js` | `Layout.astro` (all pages) | `#cookie-banner` + 3 buttons |
+| `form-handler.js` | **only** `kontakt.astro` | `#contact-form`, `#submit-btn` |
 
-### Astro Components
-- Use frontmatter (`---`) for TypeScript logic at top
-- Props interface defined with `export interface Props`
-- Destructure props with defaults: `const { title, description, ogImage = '/default.jpg' } = Astro.props`
-- Use semantic HTML5 elements (`<section>`, `<article>`, `<nav>`)
-- Include ARIA attributes for accessibility (`aria-label`, `aria-labelledby`, `aria-current`)
-- Pages import Layout: `import Layout from '../layouts/Layout.astro'`
-- Container pattern: `max-w-7xl mx-auto px-4 sm:px-6 lg:px-8`
+- `main.js` scroll animations key off `[data-animate]`, which appears **nowhere** in `src/`. `initScrollAnimations()` is dead code. The Tailwind `animate-fade-in` / `animate-slide-up` classes themselves do work when applied directly (they're used as static classes in the markup).
+- The header is `fixed` with a hard-coded `h-28`, followed by a separate `<div class="h-28"></div>` spacer. Change the header height and you must change the spacer or content hides underneath.
+- Cookie consent lives in `localStorage` under `federleicht_cookie_consent`. There is **no UI to reopen the banner** — re-testing the consent flow requires clearing that key or calling `window.CookieConsent.revoke()` (which clears and reloads). Escape key = "essential only".
 
-### CSS/Tailwind Conventions
-- Use Tailwind utility classes as primary styling method
-- Custom CSS only in `global.css` for:
-  - Font imports (`@import '@fontsource/inter/...'`)
-  - Custom scrollbar styles
-  - Accessibility focus styles (`:focus-visible` with `#D4AF37`)
-  - Skip-to-content link
-  - Print styles
-  - Reduced motion preferences (`prefers-reduced-motion`)
-- Max-width container: `max-w-7xl mx-auto px-4 sm:px-6 lg:px-8`
-- Responsive breakpoints: `sm:`, `md:`, `lg:` (mobile-first)
+## Images
 
-### JavaScript
-- Vanilla JS only (no frameworks)
-- Use `document.addEventListener('DOMContentLoaded', ...)` in `main.js`
-- All functions documented with JSDoc comments
-- Cookie banner uses IIFE pattern in `cookie-banner.js`
-- Debounce/throttle utilities provided in `main.js`
+Every photo is a **WebP + PNG pair** in `public/images/`, served as `<picture>` with `.webp` in `<source>` and `.png` in `<img src>` as fallback. New images need both formats.
 
----
+`logo_test.*` is the live logo. `logo.*` is otherwise unused — it's only referenced by the Organization JSON-LD as `https://federleicht-abriss.de/logo.png`, which is a **broken path** (missing `/images/`, and no such file in `dist/`).
 
-## Legal & Compliance Requirements
+## Forms (Web3Forms)
 
-### German Legal (TMG/DSGVO)
-The website **must** include:
+Two independent copies of the same form; keep them in sync manually.
 
-1. **Impressum** (`/impressum/`) - Legal notice with:
-   - Company name and owner (Ismail Dag)
-   - Physical address (Johann-Wichernstrasse 9a, 31319 Sehnde)
-   - Contact details (phone: 0155 67235344, email: Ismaildag@ymail.com)
-   - VAT ID (currently marked "wird nachgereicht")
-   - Gewerbeanmeldung (Gewerbeamt der Stadt Sehnde)
-   - Professional liability insurance note
-   - TRGS 519 & 521 certifications
-   - Online dispute resolution link (EU ODR)
-   - Liability disclaimers (§ 7-10 TMG)
-   - Copyright notice
+- `index.astro` (short) and `kontakt.astro` (extended: adds `address`, `preferred_date`).
+- Hard-coded `access_key` in both (`index.astro:483`, `kontakt.astro:173`). The `form-action` / `connect-src` CSP in `netlify.toml` allow-lists `api.web3forms.com` — changing providers requires a CSP edit *and* a `datenschutz.astro` update.
+- Honeypot is a `checkbox` named `botcheck`, hidden with Tailwind's `class="hidden"`.
+- The `redirect` hidden field points at the absolute `https://federleicht-abriss.de/danke/`. Change it in both or local form tests will jump to production.
+- Required on both: `name`, `phone`, `privacy` (checkbox). Email is **optional**.
+- Service `<option>` values differ: kontakt adds `asbestsanierung` and `mineralwolle`. Keep the `value` slugs in sync if you touch them.
+- `form-handler.js`'s loading state only works on `/kontakt/` — the homepage form has no `id="contact-form"`.
 
-2. **Datenschutzerklärung** (`/datenschutz/`) - Privacy policy covering:
-   - Contact form data processing (Art. 6 DSGVO basis)
-   - Web3Forms as processor
-   - Netlify hosting (US-based) with log data info
-   - Cookie usage disclosure (localStorage)
-   - User rights (Auskunft, Löschung, Berichtigung, etc.)
-   - SSL encryption notice
-   - Contact for data protection inquiries
-   - Supervisory authority (LfD Niedersachsen)
+## Legal pages (treat as locked)
 
-### GDPR/DSGVO Cookie Consent
-- Cookie banner implemented in `CookieBanner.astro` + `cookie-banner.js`
-- Stores consent in `localStorage` (key: `federleicht_cookie_consent`)
-- Three options: Accept All, Essential Only, Reject
-- Consent object structure: `{ type: 'accepted'|'essential'|'rejected', timestamp: ISOString, version: '1.0' }`
-- Escape key defaults to essential-only
-- Public API exposed via `window.CookieConsent`
+`impressum.astro` and `datenschutz.astro` exist to satisfy German law. Don't reword them without legal review. Specific facts other code depends on:
 
-### Accessibility (a11y)
-- Skip-to-main-content link (`<a href="#main-content" class="skip-to-main">`)
-- Focus indicators with brand gold color (`outline: 2px solid #D4AF37`)
-- ARIA labels on all interactive elements
-- Semantic HTML structure
-- `prefers-reduced-motion` media query support
-- Alt text on all images (German language)
-- Proper heading hierarchy (single `<h1>` per page)
+- USt-IdNr is rendered as the literal placeholder `wird nachgereicht` — it has never been issued. The **Steuernummer** `16/109/27238` (Finanzamt Hannover) lives in a *separate* block; a Steuernummer is not a USt-IdNr (`DE…`), so don't merge the two or move one into the other.
+- Contact email is `info@federleicht-abriss.de` (14 occurrences across `src/`). An older `Ismaildag@ymail.com` no longer exists — don't reintroduce it.
+- `datenschutz.astro` names **Netlify, Inc. (USA)** as host and **Web3Forms** as form processor, and mentions `localStorage` cookie consent. Changing hosting or the form provider makes this page wrong.
 
----
+## Deployment & routing gotchas
 
-## Contact Form Configuration
+- `netlify.toml` and `public/_redirects` **duplicate** the same `.html` → clean-URL 301s and the 404 fallback. Both ship (Netlify prefers `_redirects` for overlapping rules). Edit both or they silently diverge.
+- 404 mismatch: the build emits `dist/404.html`, but both redirect rules point at `/404/`, and no `/404/` directory exists in `dist`. Verify the custom 404 actually serves before assuming it does.
+- CSP allows `frame-src https://www.google.com` solely for the `kontakt.astro` map iframe. Any new third-party embed needs a CSP edit.
+- `netlify.toml` caches `/fonts/*` for a year — a path that doesn't exist today (see the global.css note).
 
-The contact form uses **Web3Forms** API:
+## SEO
 
-```html
-<form action="https://api.web3forms.com/submit" method="POST">
-  <input type="hidden" name="access_key" value="89095fef-e457-4ba7-935f-41f81e295ba5" />
-  <input type="hidden" name="redirect" value="https://federleicht-abriss.de/danke/" />
-  <!-- fields: name, phone, email, service, address, preferred_date, message, privacy -->
-</form>
-```
+- `public/sitemap.xml` is hand-maintained with hard-coded `lastmod` dates. It deliberately omits `/danke/`. Update it by hand when adding a public page.
+- `siteUrl = 'https://federleicht-abriss.de'` is hard-coded in `Layout.astro` frontmatter for canonical/OG URLs — there is no env var.
+- Nav links are duplicated between the header and the footer's "Quick Links" block, both in `Layout.astro`. Update both.
 
-**Important:** The Web3Forms access key is configured. Forms submit to Web3Forms and redirect to `/danke/`.
+## Conventions
 
-Forms exist on:
-- Homepage (`index.astro`) - basic version
-- Contact page (`kontakt.astro`) - extended version with address and date fields
-
-Form features:
-- Honeypot field (`botcheck`) for spam protection
-- Privacy checkbox required (DSGVO compliance)
-- Client-side loading state on submit
-- Accessible form labels and error states
-
----
-
-## Deployment
-
-### Netlify Configuration (`netlify.toml`)
-- **Build command:** `npm ci && npm run build`
-- **Publish directory:** `dist`
-- **Node version:** 20
-
-### Security Headers
-All pages include:
-- `X-Frame-Options: DENY`
-- `X-Content-Type-Options: nosniff`
-- `X-XSS-Protection: 1; mode=block`
-- `Content-Security-Policy` (CSP) configured
-- `Referrer-Policy: strict-origin-when-cross-origin`
-- `Permissions-Policy: camera=(), microphone=(), geolocation=()`
-
-### Redirects
-HTML extension URLs redirect to clean URLs:
-- `/leistungen.html` → `/leistungen/`
-- `/kontakt.html` → `/kontakt/`
-- etc.
-
-Custom 404 page configured for all unmatched routes.
-
-### Caching
-- CSS/JS files: 1 year (`max-age=31536000`)
-- Fonts: 1 year (`max-age=31536000`)
-- Images: 30 days (`max-age=2592000`)
-
----
-
-## SEO Implementation
-
-Each page includes:
-- Unique `<title>` and `meta name="description"`
-- Canonical URL (`<link rel="canonical">`)
-- Open Graph tags (`og:title`, `og:description`, `og:image`, `og:locale="de_DE"`)
-- Twitter Card tags
-- Schema.org structured data (LocalBusiness + Organization JSON-LD in Layout.astro)
-- Semantic heading hierarchy (single `<h1>` per page)
-- Preconnect to Web3Forms API
-- Sitemap.xml with priorities and change frequencies
-- Robots.txt allowing all access
-
----
-
-## Images and Assets
-
-Expected images in `public/images/`:
-- `hero.png` - Homepage hero background
-- `leistung1.png` - Demolition service photo
-- `leistung2.png` - Gutting service photo
-- `leistung3.png` - Clearance service photo
-- `uberuns.png` - About us / team photo
-- `logo_test.png` - Active company logo (used in header/footer)
-- `logo.png` - Alternative logo
-
-All images should:
-- Be optimized (PNG format currently used)
-- Include descriptive `alt` text in German
-- Use `loading="lazy"` except hero images (`fetchpriority="high"`)
-- Use `decoding="async"` for performance
-- Include explicit `width` and `height` attributes
-
----
-
-## Testing Checklist
-
-Before deploying changes:
-- [ ] `npm run build` completes without errors
-- [ ] All pages render correctly (`npm run preview`)
-- [ ] Mobile menu works on small screens
-- [ ] Contact form submits successfully
-- [ ] Cookie banner appears and stores preference
-- [ ] All internal links work
-- [ ] Images load correctly
-- [ ] No console errors
-- [ ] Lighthouse audit passes (accessibility, SEO, performance)
-- [ ] Impressum and Datenschutz pages are accessible
-
----
-
-## Security Considerations
-
-- No user authentication system
-- No database (fully static)
-- Form data handled by third-party (Web3Forms)
-- CSP headers prevent XSS
-- No inline scripts (all in external files)
-- HTTPS enforced by Netlify
-- Form honeypot field (`botcheck`) for spam protection
-- Subresource integrity not currently implemented (consider for future)
-
----
-
-## Notes for AI Agents
-
-1. **Language:** All content is in German. Maintain German language for any new content.
-
-2. **Legal Pages:** Do not modify Impressum or Datenschutz without legal review. These are legally required documents under German law.
-
-3. **Brand Colors:** Always use Tailwind classes for colors:
-   - Gold accent: `text-shiny-gold`, `bg-shiny-gold`
-   - Background: `bg-metallic-platin/20`, `bg-white`
-   - Text: `text-gray-900` (headings), `text-gray-600` (body)
-
-4. **Responsive Design:** All layouts use mobile-first approach with `sm:`, `md:`, `lg:` breakpoints.
-
-5. **Form Handling:** Do not modify form action URLs or hidden fields without understanding Web3Forms API.
-
-6. **Images:** Always include proper `alt` attributes in German for accessibility.
-
-7. **Navigation:** When adding new pages, update:
-   - `Header.astro` navItems array
-   - `Footer.astro` footerLinks
-   - `Layout.astro` if needed for structured data
-   - `sitemap.xml` for SEO
-   - `netlify.toml` redirects if needed
-
-8. **Component vs Layout:** The main Layout.astro includes the header, footer, and cookie banner directly. Individual Header.astro, Footer.astro, and CookieBanner.astro components exist but are primarily for reference/backup - Layout.astro is the source of truth.
-
----
-
-*Last updated: March 2024*
+- **All user-facing copy is German (de-DE).** Keep new content German.
+- Brand colors are Tailwind tokens — use the class, not a hex literal: `shiny-gold` (#D4AF37), `metallic-platin` (#E5E4E2), `concrete` / `-light` / `-dark`, `wood`. Note #D4AF37 is *also* hard-coded inline in `Layout.astro` (`style="border: 2px solid #D4AF37"`, `theme-color`, JSON-LD).
+- Container: `max-w-7xl mx-auto px-4 sm:px-6 lg:px-8`. Mobile-first `sm:` / `md:` / `lg:` breakpoints.
+- Accessibility is deliberate and already implemented — keep it when editing: skip link, `aria-current` on active nav, `aria-expanded` on the menu toggle, `aria-hidden` on decorative SVGs, exactly one `<h1>` per page, German `alt` text, `loading`/`decoding`/`width`/`height` on images.
